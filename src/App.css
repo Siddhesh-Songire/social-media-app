@@ -74,6 +74,7 @@ body {
     justify-content: center;
     align-items: center;
     margin-right: 50px;
+    margin-left: 5%;
   }
 
   .user p {
@@ -81,7 +82,15 @@ body {
     margin-right: 10px;
     color: white;
   }
-    .user img {
+  
+  .user img {
     font-size: 15px;
     border-radius: 50%;
     }
+
+  .user button {
+    font-size: 15px;
+    /* border-radius: 2%; */
+    margin-left: 4px;
+    }
+    
