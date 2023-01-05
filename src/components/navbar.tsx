@@ -1,9 +1,22 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import { auth } from "../config/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+import '../App.css';
 
 export const Navbar = () => {
-    return <div>
-        <Link to = "/"> Home </Link>
-        <Link to = "/login"> Login </Link>
-    </div>
+    const [user] = useAuthState(auth);
 
-}
+    return(
+    <div className="navbar">
+        <div className="links">
+            <Link to = "/"> Home </Link>
+            <Link to = "/login"> Login </Link>
+        </div>
+
+        <div className="user">
+            <p>{user?.displayName}</p>
+            <img src= {user?.photoURL || ""} width ="20" height = "20"/>
+        </div>
+    </div>
+    );
+};
