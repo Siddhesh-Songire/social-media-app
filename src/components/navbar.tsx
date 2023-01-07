@@ -8,7 +8,8 @@ export const Navbar = () => {
     const [user] = useAuthState(auth);
 
     const signUserOut = async () => {
-        await signOut(auth)
+        await signOut(auth);
+        window.location.reload();
     }
 
     return(
