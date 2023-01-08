@@ -85,21 +85,37 @@ export const Post = (props: Props) => {
   }, []);
 
   return (
-    <div>
-      <div className="title">
-        <h1> {post.title}</h1>
-      </div>
-      <div className="body">
-        <p> {post.description} </p>
-      </div>
+    // <div>
+    //   <div className="title">
+    //     <h1> {post.title}</h1>
+    //   </div>
+    //   <div className="body">
+    //     <p> {post.description} </p>
+    //   </div>
 
-      <div className="footer">
-        <p> @{post.username} </p>
-        <button onClick={hasUserLiked ? removeLike : addLike}>
+    //   <div className="footer">
+    //     <p> @{post.username} </p>
+    //     <button onClick={hasUserLiked ? removeLike : addLike}>
+    //       {hasUserLiked ? <>&#128078;</> : <>&#128077;</>}{" "}
+    //     </button>
+    //     {likes && <p> Likes: {likes?.length} </p>}
+    //   </div>
+    // </div>
+
+    <div className="card text-center my-5 container post p-1 bg-opacity-10 border rounded-end ">
+      <div className="card-body">
+        <h5 className="card-title strong">{post.title}</h5>
+        <p className="card-text">{post.description}</p>
+        <button
+          className="btn btn-primary"
+          onClick={hasUserLiked ? removeLike : addLike}
+        >
           {hasUserLiked ? <>&#128078;</> : <>&#128077;</>}{" "}
         </button>
         {likes && <p> Likes: {likes?.length} </p>}
+        {/* <a href="#" className="btn btn-primary">Go somewhere</a> */}
       </div>
+      <div className="card-footer text-muted">@{post.username}</div>
     </div>
   );
 };
