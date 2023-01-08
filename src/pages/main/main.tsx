@@ -29,7 +29,7 @@ export const Main = () => {
 
     return(
         <div>
-            <h1> This is main/ HOME page </h1>
+            <h1> This is the HOME page </h1>
             {postList?.map((post) => (
                 <Post post = {post} />
             ))}
