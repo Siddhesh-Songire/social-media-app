@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { db, auth } from "../../config/firebase";
 import { Post as IPost } from "./main";
+import "./post.css";
 
 interface Props {
   post: IPost;
@@ -37,7 +38,7 @@ export const Post = (props: Props) => {
       data.docs.map((doc) => ({ userId: doc.data().userId, likeId: doc.id }))
     );
   };
-  
+
   const addLike = async () => {
     try {
       const newDoc = await addDoc(likesRef, {
@@ -101,21 +102,36 @@ export const Post = (props: Props) => {
     //     {likes && <p> Likes: {likes?.length} </p>}
     //   </div>
     // </div>
-
-    <div className="card text-center my-5 container post p-1 bg-opacity-10 border rounded-end ">
-      <div className="card-body">
-        <h5 className="card-title strong">{post.title}</h5>
-        <p className="card-text">{post.description}</p>
-        <button
-          className="btn btn-primary"
-          onClick={hasUserLiked ? removeLike : addLike}
-        >
-          {hasUserLiked ? <>&#128078;</> : <>&#128077;</>}{" "}
-        </button>
-        {likes && <p> Likes: {likes?.length} </p>}
-        {/* <a href="#" className="btn btn-primary">Go somewhere</a> */}
+    <div className="card post-card p-3 mx-2 mb-4">
+      <div className="d-flex align-items-start">
+        <div className="avatar me-3">
+          {/* Display user avatar or profile image */}
+        </div>
+        <div className="flex-grow-1">
+          <div className="d-flex align-items-center">
+            <h5 className="card-title strong mb-0">{post.title}</h5>
+          </div>
+          <p className="card-text mb-3">{post.description}</p>
+        </div>
       </div>
-      <div className="card-footer text-muted">@{post.username}</div>
+      <hr />
+      <div className="d-flex justify-content-between align-items-center">
+        <div>
+          <div
+            className="like-btn me-2"
+            onClick={hasUserLiked ? removeLike : addLike}
+          >
+            {hasUserLiked ? <>&#128078;</> : <>&#128077;</>}
+          </div>
+          {likes && (
+            <p className="likes mb-0">
+              <span className="like-icon me-1">&#10084;</span>
+              {likes.length}
+            </p>
+          )}
+        </div>
+        <span className="username">@{post.username}</span>
+      </div>
     </div>
   );
 };
